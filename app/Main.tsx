@@ -283,7 +283,7 @@ export function init() {
   const window = getWindow();
   const document = getDocument();
 
-  setupOnError(window); // Do first to catch other loading errors
+  false && setupOnError(window); // Do first to catch other loading errors
   setupStorage(document);
 
   window.platform = window.cordova ? 'cordova' : 'web';
@@ -327,7 +327,7 @@ export function init() {
 
 function render() {
   // Require is done INSIDE this function to reload app changes.
-  const Compositor = require('./components/Compositor').default;
+  const CompositorContainer = require('./components/CompositorContainer').default;
   const base = getDocument().getElementById('react-app');
   if (!base) {
     throw new Error('Could not find react-app element');
@@ -335,7 +335,7 @@ function render() {
   ReactDOM.unmountComponentAtNode(base);
   ReactDOM.render(
     <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
-      <Compositor/>
+      <CompositorContainer store={getStore()}/>
     </MuiThemeProvider>,
     base
   );
