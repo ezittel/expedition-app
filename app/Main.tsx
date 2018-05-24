@@ -283,7 +283,7 @@ export function init() {
   const window = getWindow();
   const document = getDocument();
 
-  false && setupOnError(window); // Do first to catch other loading errors
+  setupOnError(window); // Do first to catch other loading errors
   setupStorage(document);
 
   window.platform = window.cordova ? 'cordova' : 'web';
