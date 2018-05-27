@@ -3,20 +3,20 @@ import {QuestDetails} from './reducers/QuestTypes'
 export const NODE_ENV = (process && process.env && process.env.NODE_ENV) || 'dev';
 // Should be overriden via env vars to use local server
 export const API_HOST = (process && process.env && process.env.API_HOST) || 'http://betaapi.expeditiongame.com';
-export const authSettings = {
-  urlBase: API_HOST,
-  apiKey: 'AIzaSyCgvf8qiaVoPE-F6ZGqX6LzukBftZ6fJr8',
-  scopes: 'profile email',
+export const AUTH_SETTINGS = {
+  URL_BASE: API_HOST,
+  API_KEY: 'AIzaSyCgvf8qiaVoPE-F6ZGqX6LzukBftZ6fJr8',
+  SCOPES: 'profile email',
   // web:
-  clientId: (process && process.env && process.env.OAUTH2_CLIENT_ID) || '545484140970-jq9jp7gdqdugil9qoapuualmkupigpdl.apps.googleusercontent.com',
+  CLIENT_ID: (process && process.env && process.env.OAUTH2_CLIENT_ID) || '545484140970-jq9jp7gdqdugil9qoapuualmkupigpdl.apps.googleusercontent.com',
   // iOS: (REVERSE_CLIENT_ID) '545484140970-lgcbm3df469kscbngg2iof57muj3p588.apps.googleusercontent.com',
   // Android: '545484140970-qrhcn069bbvae1mub2237h5k32mnp04k.apps.googleusercontent.com',
-  stripe: (NODE_ENV === 'production') ? 'pk_live_vcpOgs95UFKNV0kYOwj9JWPp' : 'pk_test_8SATEnwfIx0U2vkomn04kSou',
-  raven: 'https://990df74f1b58424395ec3d3ec6f79b42@sentry.io/420182',
+  STRIPE: (NODE_ENV === 'production') ? 'pk_live_vcpOgs95UFKNV0kYOwj9JWPp' : 'pk_test_8SATEnwfIx0U2vkomn04kSou',
+  RAVEN: 'https://990df74f1b58424395ec3d3ec6f79b42@sentry.io/420182',
 };
 
 const splitURL = API_HOST.split('/');
-export const remotePlaySettings = {
+export const MULTIPLAYER_SETTINGS = {
   newSessionURI: API_HOST + '/multiplayer/v1/new_session',
   connectURI: API_HOST + '/multiplayer/v1/connect',
   firstLoadURI: API_HOST + '/multiplayer/v1/user',
@@ -40,11 +40,11 @@ export const MIN_FEEDBACK_LENGTH = 16;
 export const UNSUPPORTED_BROWSERS = /^(.*amazon silk.*)|(.*(iphone|ipad|ipod|ios) os 9_.*)$/i;
 
 export const URLS = {
+  // lowercase to match lowercase platform names
   android: 'https://play.google.com/store/apps/details?id=io.fabricate.expedition',
   ios: 'https://itunes.apple.com/us/app/expedition-roleplaying-card/id1085063478?ls=1&mt=8',
   web: 'http://expeditiongame.com/app',
-  feedbackBase: 'http://www.expeditiongame.com/contact/?utm_source=app&utm_medium=',
-  questCreator: 'https://quests.expeditiongame.com/?utm_source=app',
+  QUEST_CREATOR: 'https://quests.expeditiongame.com/?utm_source=app',
 };
 
 export const CARD_TRANSITION_ANIMATION_MS = 300;
@@ -101,66 +101,16 @@ export const COMBAT_DIFFICULTY: {[key: string]: any} = {
   },
 };
 
-export type GenreType = 'Comedy' | 'Drama' | 'Horror' | 'Mystery' | 'Romance';
-export const GENRES: GenreType[] = [
-  'Comedy',
-  'Drama',
-  'Horror',
-  'Mystery',
-  'Romance'
-];
-
-export type LanguageType = 'English' | 'French' | 'German' | 'Italian' | 'Portuguese' | 'Spanish';
-export const LANGUAGES: LanguageType[] = [
-  'English',
-  'French',
-  'German',
-  'Italian',
-  'Portuguese',
-  'Spanish'
-];
-
-// Content rating options and their definitions, generally based on MPAA guidelines
-export type ContentRatingLabelType = 'Everyone' | 'Teen' | 'Adult';
-export interface ContentRatingType {
-  summary: string;
-  details: {[key: string]: string};
-}
-export const CONTENT_RATINGS: {[key: string]: ContentRatingType} = {
-  'Kid-friendly': {
-    summary: 'No drug use or nudity, very limited profanity, and no references to sex or detailed violence.',
-    details: {
-      violence: 'No descriptions of violence allowed outside of combat mechanics.',
-      language: 'Only very limited profanity allowed, and no sexually-derived words.',
-      drugs: 'No drug use allowed.',
-      nudity: 'No nudity allowed.',
-    },
-  },
-  'Teen': {
-    summary: 'Brief and limited violence and profanity. Potential non-sexual nudity and responsible drug use.',
-    details: {
-      violence: 'May contain brief, limited descriptions of violence.',
-      language: 'May contain profanity except in a sexual context.',
-      drugs: 'May contain drug use, but not abuse.',
-      nudity: 'May contain non-sexual nudity.',
-    },
-  },
-  'Adult': {
-    summary: 'Any level of violence, profanity, drug use, and sexuality.',
-    details: {
-      violence: 'All violence allowed.',
-      language: 'All profanity allowed.',
-      drugs: 'All drugs allowed.',
-      nudity: 'All nudity allowed.',
-    },
-  },
-};
-
 export const SPLASH_SCREEN_TIPS = [
   `Tip: You can change which expansions you're playing with in settings.`,
   `Tip: Enemies deal more damage over time, so try to win quickly!`,
   `Make sure to rate quests after you play them!`,
   `You can submit feedback at any time from the top right menu.`,
+  `Write your own quests at quests.expeditiongame.com!`,
+  `Tip: Turn your phone off silent to enjoy haptic vibration feedback.`,
+  `Tip: Searching quests only shows quests for the number of players you select.`,
+  `Did you know you can use the back of enemy cards as custom enemies?`,
+  `To avoid untimely interruptions, make sure you have a phone charger handy!`
 ];
 
 // A slight variation on the cubehelix pattern. This contains 6 categories,

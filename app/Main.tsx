@@ -55,11 +55,12 @@ declare module 'react' {
 }
 import * as ReactDOM from 'react-dom'
 import * as Raven from 'raven-js'
+import {Provider} from 'react-redux'
 import theme from './Theme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 
-import {authSettings, NODE_ENV, UNSUPPORTED_BROWSERS} from './Constants'
+import {AUTH_SETTINGS, NODE_ENV, UNSUPPORTED_BROWSERS} from './Constants'
 import {fetchAnnouncements, setAnnouncement} from './actions/Announcement'
 import {audioPause, audioResume} from './actions/Audio'
 import {toPrevious} from './actions/Card'
@@ -80,14 +81,14 @@ import thunk from 'redux-thunk' // tslint:disable-line
 
 const ReactGA = require('react-ga');
 
-Raven.config(authSettings.raven, {
-    release: getAppVersion(),
-    environment: NODE_ENV,
-    shouldSendCallback(data) {
-      const supportedBrowser = !UNSUPPORTED_BROWSERS.test(getNavigator().userAgent);
-      return supportedBrowser && NODE_ENV !== 'dev' && !getStore().getState().settings.simulator;
-    }
-  }).install();
+Raven.config(AUTH_SETTINGS.RAVEN, {
+  release: getAppVersion(),
+  environment: NODE_ENV,
+  shouldSendCallback(data) {
+    const supportedBrowser = !UNSUPPORTED_BROWSERS.test(getNavigator().userAgent);
+    return supportedBrowser && NODE_ENV !== 'dev' && !getStore().getState().settings.simulator;
+  }
+}).install();
 
 function setupTapEvents() {
   try {
@@ -220,7 +221,6 @@ function setupOnError(window: Window) {
     const questNode = quest.node && quest.node.elem && quest.node.elem[0];
     Raven.setExtraContext({
       card: state.card.key,
-      questName: quest.details.title,
       questId: quest.details.id,
       questCardTitle: (questNode) ? questNode.attribs.title : '',
       questLine: (questNode) ? questNode.attribs['data-line'] : '',
@@ -228,6 +228,7 @@ function setupOnError(window: Window) {
     });
     Raven.setTagsContext(); // Clear any existing tags
     Raven.setTagsContext({
+      questName: quest.details.title || 'n/a',
       audio: settings.audioEnabled,
       remotePlay: state.remotePlay.session !== null,
     });
@@ -327,7 +328,7 @@ export function init() {
 
 function render() {
   // Require is done INSIDE this function to reload app changes.
-  const Compositor = require('./components/Compositor').default;
+  const CompositorContainer = require('./components/CompositorContainer').default;
   const base = getDocument().getElementById('react-app');
   if (!base) {
     throw new Error('Could not find react-app element');
@@ -335,7 +336,9 @@ function render() {
   ReactDOM.unmountComponentAtNode(base);
   ReactDOM.render(
     <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
-      <Compositor/>
+      <Provider store={getStore()}>
+        <CompositorContainer store={getStore()}/>
+      </Provider>
     </MuiThemeProvider>,
     base
   );
