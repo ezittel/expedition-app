@@ -271,7 +271,9 @@ export function renderResult(props: SearchResultProps): JSX.Element {
         <span className="expansions">
           {quest.expansionhorror && <img className="inline_icon" src="images/horror_small.svg"></img>}
         </span>
-        <div className="indicators">{props.lastPlayed && <DoneIcon className="questPlayedIcon" />}</div>
+        <div className="indicators">{props.lastPlayed && <DoneIcon className="questPlayedIcon" />}
+          {quest.official !== undefined && quest.official && <img className="inline_icon" src="images/compass_small.svg"/>}
+        </div>
       </div>
     </Button>
   );
@@ -328,6 +330,7 @@ export function renderDetails(props: SearchDetailsProps): JSX.Element {
         {(quest.ratingcount && quest.ratingcount >= 1) ? <StarRating readOnly={true} value={+ratingAvg} quantity={quest.ratingcount}/> : ''}
         <div className="indicators">
           {props.lastPlayed && <div className="lastPlayed"><DoneIcon className="inline_icon" /> Last played {Moment(props.lastPlayed).fromNow()}</div>}
+          {quest.official && <span> <img className="inline_icon" src="images/compass_small.svg"/> Official Quest!</span>}
         </div>
       </div>
       <Button className="bigbutton" onTouchTap={(e)=>props.onPlay(quest, props.isDirectLinked)} remoteID="play">Play</Button>
