@@ -333,7 +333,7 @@ export function renderDetails(props: SearchDetailsProps): JSX.Element {
         <div className="indicators">
           {props.lastPlayed && <div className="lastPlayed"><DoneIcon className="inline_icon" /> Last played {Moment(props.lastPlayed).fromNow()}</div>}
           {quest.official && <span> <img className="inline_icon" src="images/compass_small.svg"/> Official Quest!</span>}
-            {quest.awarded && <div className="awarded"><StarsIcon className="starsIcon" /> {quest.awarded} </div>}
+          {quest.awarded && <div className="awarded"><StarsIcon className="starsIcon" /> {quest.awarded}</div>}
         </div>
       </div>
       <Button className="bigbutton" onTouchTap={(e)=>props.onPlay(quest, props.isDirectLinked)} remoteID="play">Play</Button>

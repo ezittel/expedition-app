@@ -1118,6 +1118,7 @@ span.line {
       font-size: fontsize(interactive);
       margin-bottom: size(small);
       top: 0;
+      width: 85%;
       white-space: nowrap;
       overflow: hidden;
     }
@@ -1195,7 +1196,8 @@ span.line {
   }
   .indicator_spacer{
     position:relative;
-    top: -(size(tiny));
+    left: size(tiny);
+    top: -(size(small));
   }
   .questButtonWithIcon {
     .inline_icon {
