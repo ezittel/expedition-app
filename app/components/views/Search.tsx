@@ -4,6 +4,7 @@ import MenuItem from 'material-ui/MenuItem'
 import SelectField from 'material-ui/SelectField'
 import TextField from 'material-ui/TextField'
 import DoneIcon from 'material-ui/svg-icons/action/done'
+import StarsIcon from 'material-ui/svg-icons/action/stars'
 import Button from '../base/Button'
 import Card from '../base/Card'
 import Checkbox from '../base/Checkbox'
@@ -272,7 +273,8 @@ export function renderResult(props: SearchResultProps): JSX.Element {
           {quest.expansionhorror && <img className="inline_icon" src="images/horror_small.svg"></img>}
         </span>
         <div className="indicators">{props.lastPlayed && <DoneIcon className="questPlayedIcon" />}
-          {quest.official !== undefined && quest.official && <img className="inline_icon" src="images/compass_small.svg"/>}
+          {quest.official !== undefined && quest.official && <span className="indicator_spacer"><img className="inline_icon" src="images/compass_small.svg"/></span>}
+          {quest.awarded && <StarsIcon className="starsIcon" />}
         </div>
       </div>
     </Button>
@@ -331,6 +333,7 @@ export function renderDetails(props: SearchDetailsProps): JSX.Element {
         <div className="indicators">
           {props.lastPlayed && <div className="lastPlayed"><DoneIcon className="inline_icon" /> Last played {Moment(props.lastPlayed).fromNow()}</div>}
           {quest.official && <span> <img className="inline_icon" src="images/compass_small.svg"/> Official Quest!</span>}
+            {quest.awarded && <div className="awarded"><StarsIcon className="starsIcon" /> {quest.awarded} </div>}
         </div>
       </div>
       <Button className="bigbutton" onTouchTap={(e)=>props.onPlay(quest, props.isDirectLinked)} remoteID="play">Play</Button>
