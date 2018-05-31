@@ -263,9 +263,9 @@ export function renderResult(props: SearchResultProps): JSX.Element {
               </div>
             </th>
             <th className="rightcell">
-              <div className="indicators">{/*props.lastPlayed &&*/ <DoneIcon className="inline_icon" />}
-                {/*quest.official !== undefined && quest.official &&*/ <span className="indicator_spacer"><img className="inline_icon" src="images/compass_small.svg"/></span>}
-                {/*quest.awarded &&*/ <StarsIcon className="inline_icon" />}
+              <div className="indicators">{props.lastPlayed && <DoneIcon className="inline_icon" />}
+                {quest.official !== undefined && quest.official && <span className="indicator_spacer"><img className="inline_icon" src="images/compass_small.svg"/></span>}
+                {quest.awarded && <StarsIcon className="inline_icon" />}
               </div>
             </th>
           </tr>
@@ -340,9 +340,9 @@ export function renderDetails(props: SearchDetailsProps): JSX.Element {
         <div className="author">by {quest.author}</div>
         {(quest.ratingcount && quest.ratingcount >= 1) ? <StarRating readOnly={true} value={+ratingAvg} quantity={quest.ratingcount}/> : ''}
         <div className="indicators">
-          {/*props.lastPlayed &&*/ <div className="inline_icon"><DoneIcon className="inline_icon" /> Last played {Moment(props.lastPlayed).fromNow()}</div>}
-          {/*quest.official &&*/ <div className="inline_icon"><img className="inline_icon" src="images/compass_small.svg"/> Official Quest!</div>}
-          {/*quest.awarded &&*/ <div className="inline_icon"><StarsIcon className="inline_icon" /> {quest.awarded}</div>}
+          {props.lastPlayed && <div className="inline_icon"><DoneIcon className="inline_icon" /> Last played {Moment(props.lastPlayed).fromNow()}</div>}
+          {quest.official && <div className="inline_icon"><img className="inline_icon" src="images/compass_small.svg"/> Official Quest!</div>}
+          {quest.awarded && <div className="inline_icon"><StarsIcon className="inline_icon" /> {quest.awarded}</div>}
         </div>
       </div>
       <Button className="bigbutton" onTouchTap={(e)=>props.onPlay(quest, props.isDirectLinked)} remoteID="play">Play</Button>
