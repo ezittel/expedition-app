@@ -1118,7 +1118,6 @@ span.line {
       font-size: fontsize(interactive);
       margin-bottom: size(small);
       top: 0;
-      width: 85%;
       white-space: nowrap;
       overflow: hidden;
     }
@@ -1182,8 +1181,27 @@ span.line {
         }
       }
     }
+    .searchResultsTitleTable {
+
+width:100%;
+      .leftcell{
+          border: 1px solid red;
+        td {
+          text-align: left;
+        }
+      }
+      .rightcell{
+          border: 1px solid red;
+        td {
+          text-align: right;
+          white-space: nowrap;
+          display:block;
+        }
+      }
+
+    }
+
     .indicators {
-      position: absolute;
       top: size(base);
       right: size(base);
       opacity: 0.65;
@@ -1194,11 +1212,7 @@ span.line {
 
     }
   }
-  .indicator_spacer{
-    position:relative;
-    left: size(tiny);
-    top: -(size(small));
-  }
+
   .questButtonWithIcon {
     .inline_icon {
       opacity: 0.65;
@@ -1214,10 +1228,18 @@ span.line {
       padding-top: size(small);
       font-style: italic;
     }
-
+    .inline_icon {
+      position:relative;
+      top: size(base);
+      padding-bottom: size(base);
+    }
     .indicators {
+      position:relative;
+      top: -(size(base));
       opacity: 0.65;
+      margin-bottom: size(small);
       padding-top: size(small);
+      padding-bottom: size(icon);
       svg {
         height: fontsize(flavor) !important;
         width: fontsize(flavor) !important;
