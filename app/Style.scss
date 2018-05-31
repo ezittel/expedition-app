@@ -1118,8 +1118,7 @@ span.line {
       font-size: fontsize(interactive);
       margin-bottom: size(small);
       top: 0;
-      white-space: nowrap;
-      overflow: hidden;
+      overflow:hidden;
     }
     .summary {
       display: flex;
@@ -1182,37 +1181,40 @@ span.line {
       }
     }
     .searchResultsTitleTable {
-
-width:100%;
+      width:100%;
       .leftcell{
-          border: 1px solid red;
-        td {
+          //border: 1px solid red;
+          overflow:hidden;
+        th {
           text-align: left;
         }
       }
       .rightcell{
-          border: 1px solid red;
-        td {
+        display:block;
+        white-space: nowrap;
+        overflow:hidden;
+        text-align: right;
+        th {
+          width:auto;
           text-align: right;
-          white-space: nowrap;
-          display:block;
         }
       }
 
     }
-
     .indicators {
-      top: size(base);
-      right: size(base);
+      position: relative;
+      margin-top: size(tiny);
       opacity: 0.65;
       svg {
         height: fontsize(interactive) !important;
         width: fontsize(interactive) !important;
       }
-
+      .indicator_spacer{
+      position:relative;
+      top: -(size(tiny));
+      }
     }
   }
-
   .questButtonWithIcon {
     .inline_icon {
       opacity: 0.65;
@@ -1237,12 +1239,14 @@ width:100%;
       position:relative;
       top: -(size(base));
       opacity: 0.65;
-      margin-bottom: size(small);
       padding-top: size(small);
       padding-bottom: size(icon);
       svg {
         height: fontsize(flavor) !important;
         width: fontsize(flavor) !important;
+      }
+      .inline_icon {
+        margin-top: size(small);
       }
     }
   }
