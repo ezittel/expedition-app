@@ -1197,20 +1197,6 @@ span.line {
         text-align: right;
         width: auto;
       }
-
-    }
-    .indicators {
-      position: relative;
-      margin-top: size(tiny);
-      opacity: 0.65;
-      svg {
-        height: fontsize(interactive) !important;
-        width: fontsize(interactive) !important;
-      }
-      .indicator_spacer{
-      position: relative;
-      top: -(size(tiny));
-      }
     }
   }
   .questButtonWithIcon {
