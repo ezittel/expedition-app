@@ -1196,6 +1196,10 @@ span.line {
         overflow: hidden;
         text-align: right;
         width: auto;
+        svg {
+          height: fontsize(flavor) !important;
+          width: fontsize(flavor) !important;
+        }
       }
     }
   }
