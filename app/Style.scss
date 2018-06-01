@@ -1183,8 +1183,12 @@ span.line {
     .searchResultsTitleTable {
       width: 100%;
       .leftcell{
-          overflow: hidden;
           text-align: left;
+          line-height: $lineheight;
+          font-family: $headerFont;
+          letter-spacing: $headerFontLetterSpacing;
+          font-size: fontsize(interactive);
+          top: 0;
       }
       .rightcell{
         display: block;

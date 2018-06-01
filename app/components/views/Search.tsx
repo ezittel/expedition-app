@@ -257,17 +257,14 @@ export function renderResult(props: SearchResultProps): JSX.Element {
           <tbody>
             <tr>
               <th className="leftcell">
-                <div className="title">
                   <Truncate lines={2}>
                     {quest.title}
                   </Truncate>
-                </div>
               </th>
               <th className="rightcell">
-                <div className="indicators">{/*props.lastPlayed &&*/ <DoneIcon className="inline_icon" />}
-                  {/*quest.official !== undefined && quest.official &&*/ <span className="indicator_spacer"><img className="inline_icon" src="images/compass_small.svg"/></span>}
-                  {/*quest.awarded &&*/ <StarsIcon className="inline_icon" />}
-                </div>
+                {props.lastPlayed && <DoneIcon className="inline_icon" />}
+                {quest.official !== undefined && quest.official && <span className="indicator_spacer"><img className="inline_icon" src="images/compass_small.svg"/></span>}
+                {quest.awarded && <StarsIcon className="inline_icon" />}
               </th>
             </tr>
           </tbody>
