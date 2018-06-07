@@ -179,6 +179,19 @@ export class SearchSettingsCard extends React.Component<SearchSettingsCardProps,
               <MenuItem value="Adult">Adult</MenuItem>
             </Select>
           </FormControl>
+          <FormControl className="selectfield halfLeft">
+            <InputLabel htmlFor="requirespenpaper">Requires Pen & Paper</InputLabel>
+            <Select
+              inputProps={{
+                id: 'requirespenpaper',
+              }}
+              onChange={(e: React.ChangeEvent<HTMLSelectElement>, c: React.ReactNode) => this.onChange('requirespenpaper', e.target.value)}
+              value={this.state.requirespenpaper}
+            >
+              <MenuItem value="true">Yes</MenuItem>
+              <MenuItem value="false">No</MenuItem>
+            </Select>
+          </FormControl>
           {rating && <div className="ratingDescription">
             <span>"{this.state.contentrating}" rating means: {rating.summary}</span>
           </div>}
@@ -371,6 +384,7 @@ export function renderDetails(props: SearchDetailsProps): JSX.Element {
             <tr><th>Players</th><td>{quest.minplayers}-{quest.maxplayers}</td></tr>
             <tr><th>Genre</th><td>{quest.genre}</td></tr>
             <tr><th>Language</th><td>{quest.language}</td></tr>
+            <tr><th>Requires Pen and Paper</th><td>{(quest.requirespenpaper) ? 'Yes' : 'No'}</td></tr>
             <tr><th>Last updated</th><td>{Moment(quest.published).format('MMMM D, YYYY h:mm a')}</td></tr>
           </tbody>
         </table>
