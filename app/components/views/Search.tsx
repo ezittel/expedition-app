@@ -358,7 +358,7 @@ export function renderDetails(props: SearchDetailsProps): JSX.Element {
   if (quest.expansionhorror) {
     allexpansions.push('The Horror');
   }
-  if (true) {
+  if (quest.requirespenpaper) {
     allexpansions.push('Pen and Paper');
   }
   if (allexpansions.length > 1) {
