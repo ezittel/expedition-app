@@ -354,7 +354,17 @@ export function renderDetails(props: SearchDetailsProps): JSX.Element {
   if (!quest) {
     return <Card title="Quest Details">Loading...</Card>
   }
-  const expansions = (quest.expansionhorror) ? <span><img className="inline_icon" src="images/horror_small.svg"/>The Horror</span> : 'None';
+  const allexpansions = ['None'];
+  if (quest.expansionhorror) {
+    allexpansions.push('The Horror');
+  }
+  if (true) {
+    allexpansions.push('Pen and Paper');
+  }
+  if (allexpansions.length > 1) {
+    allexpansions.splice(allexpansions.indexOf('None'), 1);
+  }
+
   const ratingAvg = quest.ratingavg || 0;
   return (
     <Card title="Quest Details">
@@ -375,7 +385,7 @@ export function renderDetails(props: SearchDetailsProps): JSX.Element {
         <h3>Details</h3>
         <table className="searchDetailsTable">
           <tbody>
-            <tr><th>Expansions required</th><td>{expansions}</td></tr>
+            <tr><th>Requires</th><td>{allexpansions.join(', ')}</td></tr>
             <tr><th>Content rating</th><td>{quest.contentrating}</td></tr>
             {quest.mintimeminutes !== undefined && quest.maxtimeminutes !== undefined &&
               <tr><th>Play time</th><td>{formatPlayPeriod(quest.mintimeminutes, quest.maxtimeminutes)}</td></tr>
@@ -383,7 +393,6 @@ export function renderDetails(props: SearchDetailsProps): JSX.Element {
             <tr><th>Players</th><td>{quest.minplayers}-{quest.maxplayers}</td></tr>
             <tr><th>Genre</th><td>{quest.genre}</td></tr>
             <tr><th>Language</th><td>{quest.language}</td></tr>
-            <tr><th>Requires Pen and Paper</th><td>{(quest.requirespenpaper) ? 'Yes' : 'No'}</td></tr>
             <tr><th>Last updated</th><td>{Moment(quest.published).format('MMMM D, YYYY h:mm a')}</td></tr>
           </tbody>
         </table>
