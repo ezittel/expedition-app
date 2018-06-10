@@ -355,18 +355,18 @@ export function renderDetails(props: SearchDetailsProps): JSX.Element {
   if (!quest) {
     return <Card title="Quest Details">Loading...</Card>
   }
-  const allexpansions = [];
+  const requires = [];
   if (quest.expansionhorror && quest.requirespenpaper) {
-    allexpansions.push(<span><span><img className="inline_icon" src="images/horror_small.svg"/>The Horror</span>, <span><img className="inline_icon" src="images/book_small.svg"/>Pen and Paper</span></span>);
+    requires.push(<span><span><img className="inline_icon" src="images/horror_small.svg"/>The Horror</span>, <span><img className="inline_icon" src="images/book_small.svg"/> Pen and Paper</span></span>);
   }
   if (quest.expansionhorror && !quest.requirespenpaper) {
-    allexpansions.push(<span><img className="inline_icon" src="images/horror_small.svg"/>The Horror</span>);
+    requires.push(<span><img className="inline_icon" src="images/horror_small.svg"/>The Horror</span>);
   }
   if (!quest.expansionhorror && quest.requirespenpaper) {
-    allexpansions.push(<span><img className="inline_icon" src="images/book_small.svg"/>Pen and Paper</span>);
+    requires.push(<span><img className="inline_icon" src="images/book_small.svg"/> Pen and Paper</span>);
   }
   if (!quest.expansionhorror && !quest.requirespenpaper) {
-    allexpansions.push(<span>None</span>);
+    requires.push(<span>None</span>);
   }
   const ratingAvg = quest.ratingavg || 0;
   return (
@@ -388,7 +388,7 @@ export function renderDetails(props: SearchDetailsProps): JSX.Element {
         <h3>Details</h3>
         <table className="searchDetailsTable">
           <tbody>
-            <tr><th>Requires</th><td>{allexpansions}</td></tr>
+            <tr><th>Requires</th><td>{requires}</td></tr>
             <tr><th>Content rating</th><td>{quest.contentrating}</td></tr>
             {quest.mintimeminutes !== undefined && quest.maxtimeminutes !== undefined &&
               <tr><th>Play time</th><td>{formatPlayPeriod(quest.mintimeminutes, quest.maxtimeminutes)}</td></tr>
