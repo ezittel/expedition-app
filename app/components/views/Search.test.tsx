@@ -143,6 +143,15 @@ describe('Search', () => {
       expect(wrapper.html()).toContain(quest.genre);
       expect(wrapper.html()).toContain(quest.summary);
       expect(wrapper.html()).toContain(quest.author);
+      expect(wrapper.html()).toContain(quest.official);
+    });
+
+    it('does not render unselected quest details', () => {
+      const quest = FEATURED_QUESTS.filter((el) => el.title === 'Learning to Adventure')[0];
+      const {props, wrapper} = setup(quest.title);
+      expect(wrapper.html()).not.toContain(quest.expansionhorror);
+      expect(wrapper.html()).not.toContain(quest.requirespenpaper);
+      expect(wrapper.html()).not.toContain(quest.awarded);
     });
 
     it('shows last played information if it has been played before', () => {
