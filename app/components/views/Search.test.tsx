@@ -75,10 +75,9 @@ describe('Search', () => {
       return {props, wrapper};
     }
 
-    it('displays no expansion icons when quest has no expansions', () => {
+    it('displays no horror icon when a quest does not use the Horror expansion', () => {
       const {props, wrapper} = setup('Learning to Adventure');
       expect(wrapper.html()).not.toContain('horror');
-      expect(wrapper.html()).not.toContain('book');
     });
 
     it('displays horror icon when a quest uses the Horror expansion', () => {
@@ -115,6 +114,7 @@ describe('Search', () => {
       const {props, wrapper} = setup('Learning to Adventure');
       expect(wrapper.html()).toContain('questOfficialIcon');
     });
+
   });
 
   describe('Results', () => {
@@ -144,11 +144,6 @@ describe('Search', () => {
       expect(wrapper.html()).toContain(quest.summary);
       expect(wrapper.html()).toContain(quest.author);
       expect(wrapper.html()).toContain(quest.official);
-    });
-
-    it('does not render unselected quest details', () => {
-      const quest = FEATURED_QUESTS.filter((el) => el.title === 'Learning to Adventure')[0];
-      const {props, wrapper} = setup(quest.title);
       expect(wrapper.html()).not.toContain(quest.expansionhorror);
       expect(wrapper.html()).not.toContain(quest.requirespenpaper);
       expect(wrapper.html()).not.toContain(quest.awarded);
